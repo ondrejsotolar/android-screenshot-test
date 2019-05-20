@@ -30,10 +30,10 @@ public class TaskScheduler {
         screenshot.stop();
     }
     private void startCapture() {
-        try {
+//        try {
             screenshot.run();
-        } catch (Exception e) {
-            Log.e(TAG, "Screenshot: " + e.toString());
-        }
+//        } catch (Exception e) {
+//            Log.e(TAG, "Screenshot: " + e.toString());
+//        }
     }
 }

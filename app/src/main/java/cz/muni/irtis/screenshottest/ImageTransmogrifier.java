@@ -23,7 +23,7 @@ public class ImageTransmogrifier implements ImageReader.OnImageAvailableListener
         height = screenshotMetric.getHeight();
         this.counter = 0;
 
-        imageReader = ImageReader.newInstance(width, height, PixelFormat.RGBA_8888, 1);
+        imageReader = ImageReader.newInstance(width, height, PixelFormat.RGBA_8888, 2);
         imageReader.setOnImageAvailableListener(this, screenshotMetric.getHandler());
     }
 
@@ -33,7 +33,8 @@ public class ImageTransmogrifier implements ImageReader.OnImageAvailableListener
             reader.close();
             return;
         }
-        final Image image=imageReader.acquireNextImage();
+        // TODo try catch
+        final Image image=imageReader.acquireLatestImage();
 
         if (image!=null) {
             Image.Plane[] planes=image.getPlanes();
@@ -70,7 +71,7 @@ public class ImageTransmogrifier implements ImageReader.OnImageAvailableListener
 
             String url = ScreenshotSaver.processImage_Threaded(newPng,
                     screenshotMetric.getContext().getExternalFilesDir(null));
-            screenshotMetric.finishCapture(url);
+            screenshotMetric.finishCapture("TODO");
         }
     }
 

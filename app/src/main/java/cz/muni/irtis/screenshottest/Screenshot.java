@@ -76,9 +76,7 @@ public class Screenshot {
             Log.w(TAG, "Screenshot skipped: Cannot start already started MediaProjection");
             return;
         }
-//        if (imageTransmogrifier != null) {
-//            imageTransmogrifier.close();
-//        }
+
         imageTransmogrifier = new ImageTransmogrifier(this);
         MediaProjection.Callback callback = new MediaProjection.Callback() {
             @Override
@@ -98,6 +96,7 @@ public class Screenshot {
                     handler);
             projection.registerCallback(callback, handler);
         }
+        //projection.stop();
     }
 
     public void stop() {
@@ -118,14 +117,14 @@ public class Screenshot {
     public void finishCapture(String imagePath) {
 //        if (projection != null) {
 //            projection.stop();
-        if (virtualDisplay != null) {
-            virtualDisplay.release();
-        }
+//            if (virtualDisplay != null) {
+//                virtualDisplay.release();
+//            }
 //            projection = null;
 //        }
-        if (imageTransmogrifier != null) {
-            imageTransmogrifier.close();
-        }
+//        if (imageTransmogrifier != null) {
+//            imageTransmogrifier.close();
+//        }
         if (imagePath != null && !"".equals(imagePath)) {
             this.imagePath = imagePath;
             //save(DateTime.now());

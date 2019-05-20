@@ -61,4 +61,16 @@ public class MainActivity extends AppCompatActivity {
             SchedulerService.stopRunning(this, stopIntent);
         }
     }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        Log.e("LOW MEMORY", "");
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        Log.e("TRIM MEMORY", String.valueOf(level));
+    }
 }
