@@ -16,7 +16,6 @@ public class SchedulerService extends Service {
     public static final String EXTRA_RESULT_CODE = "resultCode";
     public static final String EXTRA_RESULT_INTENT = "resultIntent";
     public static boolean IS_RUNNING = false;
-    private int testDelay = 1000;
     private static final int CHANNEL_ID = 1337;
     private static Intent screenshotData;
     private NotificationBuilder notificationBuilder;

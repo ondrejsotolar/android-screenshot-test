@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.media.Image;
 import android.media.ImageReader;
+import android.util.Log;
 import android.view.Surface;
 
 import java.io.ByteArrayOutputStream;
@@ -29,14 +30,14 @@ public class ImageTransmogrifier implements ImageReader.OnImageAvailableListener
 
     @Override
     public void onImageAvailable(ImageReader reader) {
-        if (counter++ > 0) {
-            reader.close();
-            return;
-        }
-        // TODo try catch
+//        if (counter++ > 0) {
+//            reader.close();
+//            return;
+//        }
         final Image image=imageReader.acquireLatestImage();
-
+//
         if (image!=null) {
+            Log.w("Screenshot","Screenshot received");
             Image.Plane[] planes=image.getPlanes();
             ByteBuffer buffer=planes[0].getBuffer();
             int pixelStride=planes[0].getPixelStride();
@@ -60,7 +61,7 @@ public class ImageTransmogrifier implements ImageReader.OnImageAvailableListener
             if (image != null) {
                 image.close();
             }
-
+//
             ByteArrayOutputStream baos=new ByteArrayOutputStream();
             Bitmap cropped=Bitmap.createBitmap(latestBitmap, 0, 0,
                     width, height);
@@ -68,10 +69,10 @@ public class ImageTransmogrifier implements ImageReader.OnImageAvailableListener
             cropped.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
             byte[] newPng=baos.toByteArray();
-
+//
             String url = ScreenshotSaver.processImage_Threaded(newPng,
                     screenshotMetric.getContext().getExternalFilesDir(null));
-            screenshotMetric.finishCapture("TODO");
+//            screenshotMetric.finishCapture("TODO");
         }
     }
 

@@ -35,7 +35,7 @@ public class NotificationBuilder {
     Notification buildForegroundNotification(Context context) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_LOW);
         builder.setOngoing(true)
-                .setContentTitle("IRTIS DataCollector service running.")
+                .setContentTitle("Screenshot service running.")
                 .setSmallIcon(android.R.drawable.stat_notify_sync_noanim);
 
         Intent notifIntent = new Intent(context, MainActivity.class);

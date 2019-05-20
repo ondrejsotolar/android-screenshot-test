@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
+import org.joda.time.DateTime;
+
 import static android.content.Context.MEDIA_PROJECTION_SERVICE;
 import static android.content.Context.WINDOW_SERVICE;
 
@@ -71,12 +73,13 @@ public class Screenshot {
         try {
             if (projection == null) {
                 projection = mediaProjectionManager.getMediaProjection(resultCode, resultData);
+
+
             }
         } catch(IllegalStateException e) {
             Log.w(TAG, "Screenshot skipped: Cannot start already started MediaProjection");
             return;
         }
-
         imageTransmogrifier = new ImageTransmogrifier(this);
         MediaProjection.Callback callback = new MediaProjection.Callback() {
             @Override
@@ -96,6 +99,7 @@ public class Screenshot {
                     handler);
             projection.registerCallback(callback, handler);
         }
+
         //projection.stop();
     }
 
@@ -125,10 +129,10 @@ public class Screenshot {
 //        if (imageTransmogrifier != null) {
 //            imageTransmogrifier.close();
 //        }
-        if (imagePath != null && !"".equals(imagePath)) {
-            this.imagePath = imagePath;
-            //save(DateTime.now());
-        }
+//        if (imagePath != null && !"".equals(imagePath)) {
+//            this.imagePath = imagePath;
+//            save(DateTime.now());
+//        }
     }
 
     public Context getContext() {
